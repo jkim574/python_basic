@@ -2,50 +2,53 @@
 def fill(state, maxCap, which):
 
 	# copy of state
-	origin = list(state)	
-	
-	result = origin 
-	result[which] = maxCap[which]
-	return result
+	state_copy = state[:] 
+	state_copy[which] = maxCap[which]
+	return state_copy
 		
 # returns a copy of state which empties the jug corresponding to the index in which (0 or 1). 
 def empty(state, maxCap, which):
 
 	# copy of state
-	origin2 = list(state)
-	result2 = origin2
-	result2[which] = 0
-	return result2
-
+	state_copy = state[:]
+	state_copy[which] = 0	
+	return state_copy
 
 # returns a copy of state which pours the contents of the jug at index source into the jug at index dest, until source is empty or dest is full.
 def xfer(state, maxCap, source, dest):
 
 	# copy of state
-	origin3 = list(state)
-	result3 = origin3
+	state_copy = state[:]
 
 	# source is 0 and dest is 1
-	if source < dest:
-		if result3[source] + result3[dest] >= maxCap[dest]:
-			sub = maxCap[dest] - result3[dest]
-			result3[source] -= sub
-			result3[dest] = maxCap[dest]
+	if source == 0 and dest == 1:
+		
+		# if the contents of the 'dest' jug overflow afte the pour
+		if state_copy[source] + state_copy[dest] >= maxCap[dest]:
+			subtract = maxCap[dest] - state_copy[dest]
+			state_copy[source] -= subtract
+			state_copy[dest] = maxCap[dest]
+
+		# if the contents of the 'dest' jug don't overflow after the pour
 		else:
-			result3[dest] += result3[source]
-			result3[source] = 0
+			state_copy[dest] += state_copy[source]
+			state_copy[source] = 0
+
 	# source is 1 and dest is 0	
-	if source > dest:	
-		if result3[source] + result3[dest] >= maxCap[dest]:
-			sub = maxCap[dest] - result3[dest]
-			result3[source] -= sub	
-			result3[dest] = maxCap[dest]
+	elif source == 1 and dest == 0:
+	
+		#if the contents of the 'source' jug overflow after the pour	
+		if state_copy[source] + state_copy[dest] >= maxCap[dest]:
+			state_copy= maxCap[dest] - state_copy[dest]
+			state_copy[source] -= subtract	
+			state_copy[dest] = maxCap[dest]
 
+		#if the contents of the 'source' jug don't overflow after the pour
 		else:
-			result3[dest] += result3[source]
-			result3[source] = 0
+			state_copy[dest] += state_copy[source]
+			state_copy[source] = 0
 
-	return result3
+	return state_copy 
 
 
 # prints the list of unique successor states of the current state in any order. 
@@ -58,22 +61,18 @@ def succ(state, maxCap):
 	xfer10 = xfer(state, maxCap, 1, 0) 
 
 	add = [fill0, fill1, empty0, empty1, xfer01, xfer10]
-
 	result = []
+
 	# Convert items to a tuple, then convert it the whole thing to a set, then convert everything back to a list:
 	result = list(set(tuple(item) for item in add))
-	print(result) 
+	
+	# Convert to list of list
+	result = list(list(item) for item in result)
+	print(result)
 
-
-
+"""
 # main	
 if __name__ == "__main__":
-	s0 = [0,0]
-	max = [14,7]
-	 
-#	print(fill(s0, max, 1))
-#	print(empty(s0, max, 0 ))
-#	print(s0)
-#	print(max)
-#	xfer(s0, max, 1, 0)
-	succ(s0, max)	
+	s0 = [1, 3]
+	max = [10, 7]	 
+"""
