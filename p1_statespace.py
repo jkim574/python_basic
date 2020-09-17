@@ -39,7 +39,7 @@ def xfer(state, maxCap, source, dest):
 	
 		#if the contents of the 'source' jug overflow after the pour	
 		if state_copy[source] + state_copy[dest] >= maxCap[dest]:
-			state_copy= maxCap[dest] - state_copy[dest]
+			subtract = maxCap[dest] - state_copy[dest]
 			state_copy[source] -= subtract	
 			state_copy[dest] = maxCap[dest]
 
@@ -73,6 +73,7 @@ def succ(state, maxCap):
 """
 # main	
 if __name__ == "__main__":
-	s0 = [1, 3]
-	max = [10, 7]	 
+	s0 = [0, 0]
+	max = [1, 2]	 
+	succ(s0, max);
 """

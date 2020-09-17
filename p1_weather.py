@@ -91,10 +91,10 @@ if __name__ == "__main__":
 	print(majority_vote([{'DATE': '2015-08-12', 'TMAX': 83.0, 'PRCP': 0.3, 'TMIN': 62.0, 'RAIN': 'TRUE'},
 {'DATE': '2014-05-19', 'TMAX': 70.0, 'PRCP': 0.0, 'TMIN': 50.0, 'RAIN': 'FALSE'},
 {'DATE': '2014-12-05', 'TMAX': 55.0, 'PRCP': 0.12, 'TMIN': 44.0, 'RAIN': 'TRUE'},
-{'DATE': '1954-09-08', 'TMAX': 71.0, 'PRCP': 0.02, 'TMIN': 55.0, 'RAIN': 'TRUE'},
+{'DATE': '1954-09-08', 'TMAX': 71.0, 'PRCP': 0.02, 'TMIN': 55.0, 'RAIN': 'FALSE'},
 {'DATE': '2014-08-27', 'TMAX': 84.0, 'PRCP': 0.0, 'TMIN': 61.0, 'RAIN': 'FALSE'}]))
 	
-	print(k_nearest_neighbors('rain.txt', {'DATE': '1948-01-01', 'TMAX':51.0, 'PRCP': 0.47, 'TMIN': 42.0}, 4, 10))
+	print(k_nearest_neighbors('rain.txt', {'DATE': '1948-10-07', 'TMAX':51.0, 'PRCP': 0.47, 'TMIN': 42.0}, 1, 3))
 
-	print(k_nearest_neighbors('rain.txt', {'DATE': '1950-01-01', 'TMAX':51.0, 'PRCP': 0.47, 'TMIN': 42.0}, 7, 2))
+	print(k_nearest_neighbors('rain.txt', {'DATE': '2008-05-15', 'TMAX':65.0, 'PRCP': 0.2, 'TMIN': 38.0}, 4, 5))
 """
